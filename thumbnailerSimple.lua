@@ -27,6 +27,8 @@ end
 
 local content = readLines(arg[1])
 local site = 'http://thetvdb.com/banners/_cache/'
+local episodeTagStart = '<Episode>'
+local episodeTagStop = '</Episode>'
 local seriesTag = '<SeriesName>'
 local fileTag = '<filename>'
 local epTag = '<EpisodeNumber>'
@@ -48,24 +50,25 @@ if seriesName == '' then
 	os.exit(1)
 end
 
-local count = 0
 for k,str in ipairs(content) do
 	if hasTag(str, fileTag) then
 		epInfo[fileTag] = tagContents(str, fileTag)
-		count = count + 1
+		
 	elseif hasTag(str, epTag) then
 		epInfo[epTag] = tagContents(str, epTag)
-		count = count + 1
+		
 	elseif hasTag(str, seasonTag) then
-		epInfo[seasonTag] = tagContents(str, seasonTag) + 1
-		count = count + 1
+		epInfo[seasonTag] = tagContents(str, seasonTag)
+		
 	elseif hasTag(str, nameTag) then
 		epInfo[nameTag] = tagContents(str, nameTag)
-		count = count + 1
-	end
-	
-	if count == 4 then
-		count = 0
+		
+	elseif hasTag(str, episodeTagStart) then
+		for k,v in pairs(epInfo) do
+			epInfo[k] = ''
+		end
+		
+	elseif hasTag(str, episodeTagStop) then
 		if epInfo[fileTag] ~= '' then
 			http.request {
   			url = site .. epInfo[fileTag],
