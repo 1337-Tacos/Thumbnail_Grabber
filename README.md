@@ -1,4 +1,5 @@
 # Thumbnail Grabber
+*A very special thanks to the maintainer of the [TVDB](http://thetvdb.com) and its content contributors that make this scraper possible. Feel free to donate to it because servers don't pay for themselves. :D*
 ##Simple
 ThumbnailerSimple.lua is a simpler scraper that only relies on Lua Socket and is not resilient to changes, but depends on much fewer libraries.
 ###Dependencies
