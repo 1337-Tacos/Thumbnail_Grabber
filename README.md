@@ -15,3 +15,7 @@ ThumbnailerSimple.lua is a simpler scraper that only relies on Lua Socket and is
 
 
 *Please don't abuse the public API token.*
+
+##License:
+* Thumbnail Grabber: [GPLv3](http://www.gnu.org/licenses/gpl.txt)
+* LuaSocket: [LuaSocket v3.0](https://raw.githubusercontent.com/diegonehab/luasocket/master/LICENSE)
